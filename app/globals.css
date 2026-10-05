@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+/* ---------- Fonts: Manrope + FreightDisp Pro only ---------- */
+@font-face { font-family: "Manrope"; src: url("/fonts/Manrope-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Manrope"; src: url("/fonts/Manrope-Medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Manrope"; src: url("/fonts/Manrope-SemiBold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Manrope"; src: url("/fonts/Manrope-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Manrope"; src: url("/fonts/Manrope-ExtraBold.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: swap; }
+
+@font-face { font-family: "Freight Disp Pro"; src: url("/fonts/FreightDispProBook-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Freight Disp Pro"; src: url("/fonts/FreightDispProBook-Italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Freight Disp Pro"; src: url("/fonts/FreightDispProMedium-Regular.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Freight Disp Pro"; src: url("/fonts/FreightDispProSemibold-Italic.woff2") format("woff2"); font-weight: 600; font-style: italic; font-display: swap; }
+@font-face { font-family: "Freight Disp Pro"; src: url("/fonts/FreightDispProBlack-Regular.woff2") format("woff2"); font-weight: 900; font-style: normal; font-display: swap; }
+
+/* ---------- Brand tokens (from the LMM brand guide) ---------- */
+@theme {
+  --color-charcoal: #191919;
+  --color-ivory: #f8f6f3;
+  --color-orange: #e68a42;
+  --color-stone: #c8c4be;
+
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --font-serif: "Freight Disp Pro", Georgia, serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --nav-h: 48px;
+  --gutter: clamp(16px, 2.2vw, 32px);
+}
+
+html { background: var(--color-ivory); }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-charcoal);
+  background: var(--color-ivory);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection { background: var(--color-orange); color: var(--color-charcoal); }
+
+/* ---------- Type scale ---------- */
+.display-xl { font-weight: 500; letter-spacing: -0.045em; line-height: 0.94; font-size: clamp(3rem, 10.2vw, 11rem); }
+.display-lg { font-weight: 500; letter-spacing: -0.04em; line-height: 0.98; font-size: clamp(2.4rem, 6.4vw, 6.5rem); }
+.display-md { font-weight: 500; letter-spacing: -0.035em; line-height: 1.02; font-size: clamp(1.9rem, 4vw, 4rem); }
+.body-lg { font-size: clamp(1.05rem, 1.35vw, 1.4rem); line-height: 1.45; letter-spacing: -0.01em; }
+.eyebrow { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* Serif accent: italic FreightDisp Pro. Orange on dark, charcoal on ivory (contrast). */
+.serif { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: -0.02em; }
+
+/* ---------- Line reveal masks ---------- */
+.split-line-mask { overflow: hidden; padding-bottom: 0.12em; margin-bottom: -0.12em; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  height: 52px; padding: 0 1.4rem; border-radius: 4px;
+  font-weight: 600; font-size: 0.95rem; letter-spacing: -0.01em;
+  transition: background-color 0.35s var(--ease-out-expo), color 0.35s var(--ease-out-expo), transform 0.35s var(--ease-out-expo);
+}
+.btn-orange { background: var(--color-orange); color: var(--color-charcoal); }
+.btn-orange:hover { background: var(--color-ivory); }
+.btn-dark { background: var(--color-charcoal); color: var(--color-ivory); }
+.btn-dark:hover { background: var(--color-orange); color: var(--color-charcoal); }
+.btn-ghost-light { box-shadow: inset 0 0 0 1px rgba(248,246,243,0.35); color: var(--color-ivory); }
+.btn-ghost-light:hover { background: var(--color-ivory); color: var(--color-charcoal); }
+.btn:focus-visible, a:focus-visible, button:focus-visible { outline: 2px solid var(--color-orange); outline-offset: 3px; }
+
+/* Underline link that draws in */
+.link-u { background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size 0.5s var(--ease-out-expo); }
+.link-u:hover { background-size: 100% 1px; }
+
+/* Parallax image wrapper (oversized so it can travel without exposing edges) */
+.px-wrap { position: absolute; inset: -34px -46px; will-change: transform; }
+.px-frame { position: relative; overflow: hidden; border-radius: 4px; }
+
+/* Hide scrollbar on horizontally scrolling rows */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
