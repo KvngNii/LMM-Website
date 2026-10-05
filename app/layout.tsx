@@ -24,7 +24,9 @@ const preload = ["Manrope-Medium", "Manrope-SemiBold", "FreightDispProBook-Itali
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    // suppressHydrationWarning: the inline script below adds the "js" class to <html> before
+    // React hydrates, and some browser extensions add attributes too. Both are expected.
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
         <style dangerouslySetInnerHTML={{ __html: "html.js .reveal{visibility:hidden}" }} />
